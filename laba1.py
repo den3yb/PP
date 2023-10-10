@@ -16,16 +16,16 @@ with open ("site.html", "r", encoding='utf-8') as file:
     site = file.read()
 
 
-soup1 = BeautifulSoup(site, "lxml")
+soup_main = BeautifulSoup(site, "lxml")
 
-all_rev = soup1.find_all(class_="review-btn review-read-link")
+all_rev = soup_main.find_all(class_="review-btn review-read-link")
 for rev in all_rev:
     rev_href = "https://otzovik.com" + rev.get("href")
     print (rev_href)
-    rev_req = requests.get("https://otzovik.com/review_13327608.html", headers=header).text
-    soup2 = BeautifulSoup(rev_req, "lxml")
-    rev_main = soup2.find(class_="review-body description")
-    rev_rat = soup2.find(class_="rating")
+    rev_req = requests.get(rev_href, headers=header).text
+    soup_rev = BeautifulSoup(rev_req, "lxml")
+    rev_main = soup_rev.find(class_="review-body description").text
+    rev_rat = soup_rev.find(class_="rating").text
     print(rev_main)
     print(rev_rat)
     
