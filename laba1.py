@@ -19,13 +19,13 @@ if not os.path.isdir(f"dataset"):
 
 
 
-for score in range(1,2):
+for score in range(1,6):
 
-    count=392
+    count=1
     if not os.path.isdir(f"dataset/{str(score)}"):
         os.mkdir(f"dataset/{str(score)}")
 
-    for ratio in range(20,32):
+    for ratio in range(1,32):
 
         url_temp = url + str(ratio) + "/?ratio=" + str(score)
         src = requests.get( url_temp, headers=header).text
